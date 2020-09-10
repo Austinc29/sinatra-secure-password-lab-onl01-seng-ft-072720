@@ -54,11 +54,6 @@ describe 'App' do
     end
   end
 
-  describe "User Model" do
-    it "responds to authenticate method from has_secure_password" do
-      @user = User.create(:username => "test123", :password => "test")
-      expect(@user.authenticate("test")).to be_truthy
-    end
-  end
+ 
 
 end
