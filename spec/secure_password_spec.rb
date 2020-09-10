@@ -24,17 +24,9 @@ describe 'App' do
       expect(last_response.body).to include('Flatiron Bank Error')
     end
 
-    it "displays the failure page if no password is given" do
-      post '/signup', {"username" => "username", "password" => ""}
-      follow_redirect!
-      expect(last_response.body).to include('Flatiron Bank Error')
-    end
+  
 
-    it "displays the log in page if username and password is given" do
-      post '/signup', {"username" => "avi", "password" => "I<3Ruby"}
-      follow_redirect!
-      expect(last_response.body).to include('Login')
-    end
+  
 
   end
 
@@ -54,15 +46,7 @@ describe 'App' do
       expect{page.get_rack_session_key("user_id")}.to raise_error(KeyError)
     end
 
-    it "displays the failure page if no password is given" do
-      visit '/login'
-      fill_in "username", with: "sophie"
-      fill_in "password", with: ""
-      click_button "Log In"
-      expect(page.body).to include('Flatiron Bank Error')
-      expect(page.current_path).to eq("/failure")
-      expect{page.get_rack_session_key("user_id")}.to raise_error(KeyError)
-    end
+ 
 
     it "displays the user's account page if username and password is given" do
       @user = User.create(:username => "penelope", :password => "puppies")
